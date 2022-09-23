@@ -14,10 +14,10 @@
     // log(str[i]);
   }
   for (const a of list) {
-    // log(a);
+    log(a);
   }
   for (const a of str) {
-    // log(a);
+    log(a);
   }
 </script>
 
@@ -26,7 +26,9 @@
 <script>
   log('Arr -----------');
   const arr = [1, 2, 3];
-  let iter1 = arr[Symbol.iterator]();
+  let iter1 = arr[Symbol.iterator]()
+  log(iter1)
+  iter1.next()
   for (const a of iter1) log(a);
 </script>
 
@@ -35,6 +37,8 @@
 <script>
   log('Set -----------');
   const set = new Set([1, 2, 3]);
+  log(set)
+  log(set[Symbol.iterator]())
   for (const a of set) log(a);
 </script>
 
@@ -43,10 +47,20 @@
 <script>
   log('Map -----------');
   const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
+  let iter2 = map[Symbol.iterator]()
+  log(map.keys())
+  log(map.keys()[Symbol.iterator]())
+  log(map.values()[Symbol.iterator]())
+  log(map.entries()[Symbol.iterator]())
+  log(map[Symbol.iterator])
+  log(iter2.next())
+  log(iter2.next())
+  log(iter2.next())
+  log(iter2.next())
   for (const a of map.keys()) log(a);
   for (const a of map.values()) log(a);
   for (const a of map.entries()) log(a);
-  console.clear();
+  //console.clear();
 </script>
 
 ## 이터러블/이터레이터 프로토콜
@@ -59,20 +73,20 @@
 <script>
   const iterable = {
     [Symbol.iterator]() {
-      let i = 3;
+      let i = 3
       return {
         next() {
-          return i == 0 ? {done: true} : {value: i--, done: false};
+          return i == 0 ? {done: true} : {value: i--, done: false}
         },
         [Symbol.iterator]() {
-          return this;
+          return this
         }
       }
     }
-  };
+  }
+  log(iterable)
   let iterator = iterable[Symbol.iterator]();
-  iterator.next();
-  iterator.next();
+  log(iterator.next());
   // log(iterator.next());
   // log(iterator.next());
   // log(iterator.next());
@@ -95,7 +109,7 @@
 ## 전개 연산자
 
 <script>
-  console.clear();
+  //console.clear();
   const a = [1, 2];
   // a[Symbol.iterator] = null;
   log([...a, ...arr, ...set, ...map.keys()]);

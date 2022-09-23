@@ -17,6 +17,7 @@ const filter = (f, iter) => {
 };
 
 const reduce = (f, acc, iter) => {
+  console.log(acc)
   if (!iter) {
     iter = acc[Symbol.iterator]();
     acc = iter.next().value;
