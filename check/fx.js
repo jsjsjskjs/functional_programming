@@ -25,6 +25,7 @@ export function reduce(f, acc, iter) {
   }
   for (const a of iter) {
     acc = f(acc, a)
+    console.log(acc)
   }
   return acc
 }
